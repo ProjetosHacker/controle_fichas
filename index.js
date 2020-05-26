@@ -64,6 +64,19 @@ router.get('/fichas/:id?', (req, res) =>{
     execSQLQuery('SELECT * FROM ficha' + filter, res);
 })
 
+//filtra por id da prateleira .
+router.get('/fichas/prateleira/:id', (req, res) =>{
+    let filter = '';
+    if(req.params.id) filter = ' WHERE PRATELEIRA=' + parseInt(req.params.id);
+    execSQLQuery('SELECT * FROM ficha' + filter, res);
+})
+
+//filtra por id da prateleira e id da estante .
+router.get('/fichas/prateleira/:id/estante/:id2', (req, res) =>{
+    let filter = '';
+    if(req.params.id) filter = ' WHERE PRATELEIRA=' + parseInt(req.params.id) + ' AND ESTANTE=' + parseInt(req.params.id2) ;
+    execSQLQuery('SELECT * FROM ficha' + filter, res);
+})
 
 //inicia o servidor
 app.listen(port);
