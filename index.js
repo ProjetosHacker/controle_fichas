@@ -30,34 +30,40 @@ function execSQLQuery(sqlQry, res){
 //definindo as rotas
 const router = express.Router();
 
-/* //inserir
-router.post('/clientes', (req, res) =>{
-    const nome = req.body.nome.substring(0,150);
-    const cpf = req.body.cpf.substring(0,11);
-    execSQLQuery(`INSERT INTO Clientes(Nome, CPF) VALUES('${nome}','${cpf}')`, res);
-}); */
 
 router.get('/', (req, res) => res.json({ message: 'Tela inicial sisficha!' }));
 app.use('/', router);
 
-//delete
-router.delete('/clientes/:id', (req, res) =>{
-    execSQLQuery('DELETE FROM Clientes WHERE ID=' + parseInt(req.params.id), res);
-})
+/* rotas ficha */
 
-//pesquisa 
-router.get('/clientes/:id?', (req, res) =>{
-    let filter = '';
-    if(req.params.id) filter = ' WHERE ID=' + parseInt(req.params.id);
-    execSQLQuery('SELECT * FROM Clientes' + filter, res);
-})
-//alterar
-router.patch('/clientes/:id', (req, res) =>{
+ //inserir
+/* router.post('/fichas', (req, res) =>{
+    const nome = req.body.nome.substring(0,150);
+    const cpf = req.body.cpf.substring(0,11);
+    execSQLQuery(`INSERT INTO ficha(Nome, CPF) VALUES('${nome}','${cpf}')`, res);
+});  */
+
+/* //alterar
+router.patch('/fichas/:id', (req, res) =>{
     const id = parseInt(req.params.id);
     const nome = req.body.nome.substring(0,150);
     const cpf = req.body.cpf.substring(0,11);
-    execSQLQuery(`UPDATE Clientes SET Nome='${nome}', CPF='${cpf}' WHERE ID=${id}`, res);
+    execSQLQuery(`UPDATE ficha SET Nome='${nome}', CPF='${cpf}' WHERE NUMFICHA=${id}`, res);
+}) */
+
+/* //delete
+router.delete('/fichas/:id', (req, res) =>{
+    execSQLQuery('DELETE FROM ficha WHERE NUMFICHA=' + parseInt(req.params.id), res);
+}) */
+
+
+//pesquisa ficha por id ou se vazio retorna todas as fichas .
+router.get('/fichas/:id?', (req, res) =>{
+    let filter = '';
+    if(req.params.id) filter = ' WHERE NUMFICHA=' + parseInt(req.params.id);
+    execSQLQuery('SELECT * FROM ficha' + filter, res);
 })
+
 
 //inicia o servidor
 app.listen(port);
