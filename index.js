@@ -78,6 +78,12 @@ router.get('/fichas/prateleira/:id/estante/:id2', (req, res) =>{
     execSQLQuery('SELECT * FROM ficha' + filter, res);
 })
 
+//Lista de Estantes e Prateleiras cadastradas no Bd .
+router.get('/estantes/:id?', (req, res) =>{
+    let filter = '';
+    if(req.params.id) filter = ' WHERE CODLOCAL=' + parseInt(req.params.id);
+    execSQLQuery('SELECT * FROM estante' + filter, res);
+})
 //inicia o servidor
 app.listen(port);
 console.log('API funcionando!');
