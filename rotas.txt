@@ -10,6 +10,9 @@ Filtra fichas por prateleiras
 '/fichas/prateleira:id/estante:id'
 Filtra fichas por prateleira e estante
 =========================================================
-ficha/:id
+'ficha/:id'
 detalhes da ficha
+=========================================================
+'/estantes/:id'
+Lista de estantes e Prateleiras
 =========================================================
