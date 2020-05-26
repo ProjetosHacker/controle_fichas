@@ -1,0 +1,12 @@
+'/' 
+rota raiz
+=========================================================
+'/fichas'
+lista todas as fichas 
+=========================================================
+'fichas/prateleira:id'
+Filtra fichas por prateleiras
+=========================================================
+'fichas/prateleira:id/estante:id'
+Filtra fichas por prateleira e estante
+========================================================
