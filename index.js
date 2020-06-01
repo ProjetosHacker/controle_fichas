@@ -1,9 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();         
 const bodyParser = require('body-parser');
 const port = 3000; //porta padrão
 const mysql = require('mysql');
-
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -78,6 +79,12 @@ router.get('/fichas/prateleira/:id/estante/:id2', (req, res) =>{
     execSQLQuery('SELECT * FROM ficha' + filter, res);
 })
 
+//Lista de Estantes e Prateleiras cadastradas no Bd .
+router.get('/estantes/:id?', (req, res) =>{
+    let filter = '';
+    if(req.params.id) filter = ' WHERE CODLOCAL=' + parseInt(req.params.id);
+    execSQLQuery('SELECT * FROM estante' + filter, res);
+})
 //inicia o servidor
 app.listen(port);
 console.log('API funcionando!');
