@@ -64,7 +64,7 @@ router.patch('/alterar/fichas/:id', (req, res) =>{
     const UF = req.body.UF.substring(0,2);
     execSQLQuery(`UPDATE ficha SET MATRICULA='${MATRICULA}',
                   NOMESERVIDOR='${NOMESERVIDOR}',
-                  NOMEMAE='${NOMEMAE},
+                  NOMEMAE='${NOMEMAE}',
                    DTNASC='${DTNASC}',
                    CPF='${CPF}',
                    CODLOCAL='${CODLOCAL}',
@@ -74,8 +74,8 @@ router.patch('/alterar/fichas/:id', (req, res) =>{
                    CODUSUEMP='${CODUSUEMP}',
                    RG='${RG}',
                    ORGAOEXP='${ORGAOEXP}',
-                   UF='${UF}', 
-                   WHERE NUMFICHA=${NUMFICHA}`,                  
+                   UF='${UF}' 
+                   WHERE NUMFICHA='${NUMFICHA}'`,                  
                    res);
 }) 
 
