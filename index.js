@@ -21,8 +21,9 @@ function execSQLQuery(sqlQry, res, req){
     connection.query(sqlQry, function(error, results, fields){
         if (error) {
           res.json(error);
-          
+          console.log(error,"ERROR");
         } else {
+            console.log(res,"RESOLVE");
           res.json(results);         
         connection.end();
         console.log('executou!');
