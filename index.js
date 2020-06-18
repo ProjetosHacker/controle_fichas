@@ -40,11 +40,50 @@ app.use('/', router);
 /* rotas ficha */
 
  //inserir
-/* router.post('/fichas', (req, res) =>{
-    const nome = req.body.nome.substring(0,150);
-    const cpf = req.body.cpf.substring(0,11);
-    execSQLQuery(`INSERT INTO ficha(Nome, CPF) VALUES('${nome}','${cpf}')`, res);
-});  */
+ router.post('/inserir/ficha', (req, res) =>{
+    //const NUMFICHA = parseInt(req.params.id);
+    const MATRICULA = req.body.MATRICULA;
+    const NOMESERVIDOR = req.body.NOMESERVIDOR;
+    const NOMEMAE = req.body.NOMEMAE;
+    const DTNASC = req.body.DTNASC;
+    const CPF = req.body.CPF;
+    const CODLOCAL = req.body.CODLOCAL;
+    const ESTANTE = req.body.ESTANTE;
+    const PRATELEIRA = req.body.PRATELEIRA;
+    const SITFICHA = req.body.SITFICHA;
+    const CODUSUEMP = req.body.CODUSUEMP;
+    const RG = req.body.RG;
+    const ORGAOEXP = req.body.ORGAOEXP;
+     const UF = req.body.UF;
+    execSQLQuery(`INSERT INTO ficha (MATRICULA,
+                  NOMESERVIDOR,
+                  NOMEMAE,
+                   DTNASC,
+                   CPF,
+                   CODLOCAL,
+                   ESTANTE,
+                   PRATELEIRA,
+                   SITFICHA,
+                   CODUSUEMP,
+                   RG,
+                   ORGAOEXP,
+                   UF)
+                    VALUES
+                   ('${MATRICULA}',
+                    '${NOMESERVIDOR}',
+                    '${NOMEMAE}',
+                    '${DTNASC}',
+                    '${CPF}',
+                    '${CODLOCAL}',
+                    '${ESTANTE}',
+                    '${PRATELEIRA}',
+                    '${SITFICHA}',
+                    '${CODUSUEMP}',
+                    '${RG}',
+                    '${ORGAOEXP}',
+                    '${UF}')`,
+                   res);
+})
 
  
 router.patch('/alterar/fichas/:id', (req, res) =>{
@@ -61,7 +100,7 @@ router.patch('/alterar/fichas/:id', (req, res) =>{
     const CODUSUEMP = req.body.CODUSUEMP.substring(0,10);
     const RG = req.body.RG.substring(0,15);
     const ORGAOEXP = req.body.ORGAOEXP.substring(0,3);
-    const UF = req.body.UF.substring(0,2);
+     const UF = req.body.UF.substring(0,2);
     execSQLQuery(`UPDATE ficha SET MATRICULA='${MATRICULA}',
                   NOMESERVIDOR='${NOMESERVIDOR}',
                   NOMEMAE='${NOMEMAE}',
@@ -77,7 +116,7 @@ router.patch('/alterar/fichas/:id', (req, res) =>{
                    UF='${UF}' 
                    WHERE NUMFICHA='${NUMFICHA}'`,                  
                    res);
-}) 
+})
 
 /* //delete
 router.delete('/fichas/:id', (req, res) =>{
