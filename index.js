@@ -12,9 +12,9 @@ app.use(bodyParser.json());
 function execSQLQuery(sqlQry, res, req){
     const connection = mysql.createConnection({
         host     : 'localhost',
-        port     : 3307,
+        port     : 3306,
         user     : 'root',
-        password : 'cl123456',
+        password : '',
         database : 'sis_ficha'
     });
   
