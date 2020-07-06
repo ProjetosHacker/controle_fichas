@@ -118,10 +118,10 @@ router.patch('/alterar/fichas/:id', (req, res) =>{
                    res);
 })
 
-/* //delete
-router.delete('/fichas/:id', (req, res) =>{
+//delete
+router.delete('/delete/fichas/:id', (req, res) =>{
     execSQLQuery('DELETE FROM ficha WHERE NUMFICHA=' + parseInt(req.params.id), res);
-}) */
+}) 
 
 
 //pesquisa ficha por id ou se vazio retorna todas as fichas .
@@ -132,7 +132,7 @@ router.get('/fichas/:id?', (req, res) =>{
 })
 
 //filtra por id da prateleira .
-router.get('/fichas/prateleira/:id', (req, res) =>{
+router.get('/fichas/prateleira/:id', (req, res) => {
     let filter = '';
     if(req.params.id) filter = ' WHERE PRATELEIRA=' + parseInt(req.params.id);
     execSQLQuery('SELECT * FROM ficha' + filter, res);
