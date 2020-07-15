@@ -14,7 +14,7 @@ function execSQLQuery(sqlQry, res, req){
         host     : 'localhost',
         port     : 3306,
         user     : 'root',
-        password : '',
+        password : 'cl123456',
         database : 'sis_ficha'
     });
   
@@ -39,7 +39,7 @@ app.use('/', router);
 
 /* rotas ficha */
 
- //inserir
+ //inserir ficha
  router.post('/inserir/ficha', (req, res) =>{
     //const NUMFICHA = parseInt(req.params.id);
     const MATRICULA = req.body.MATRICULA;
@@ -85,7 +85,7 @@ app.use('/', router);
                    res);
 })
 
- 
+ // alterar ficha 
 router.patch('/alterar/fichas/:id', (req, res) =>{
     const NUMFICHA = parseInt(req.params.id);
     const MATRICULA = req.body.MATRICULA.substring(0,12);
@@ -118,7 +118,7 @@ router.patch('/alterar/fichas/:id', (req, res) =>{
                    res);
 })
 
-//delete
+//deletar ficha
 router.delete('/delete/fichas/:id', (req, res) =>{
     execSQLQuery('DELETE FROM ficha WHERE NUMFICHA=' + parseInt(req.params.id), res);
 }) 
@@ -151,6 +151,92 @@ router.get('/estantes/:id?', (req, res) =>{
     if(req.params.id) filter = ' WHERE CODLOCAL=' + parseInt(req.params.id);
     execSQLQuery('SELECT * FROM estante' + filter, res);
 })
+
+ //inserir estante
+ router.post('/inserir/estante', (req, res) =>{
+    //const NUMFICHA = parseInt(req.params.id);
+    const MATRICULA = req.body.MATRICULA;
+    const NOMESERVIDOR = req.body.NOMESERVIDOR;
+    const NOMEMAE = req.body.NOMEMAE;
+    const DTNASC = req.body.DTNASC;
+    const CPF = req.body.CPF;
+    const CODLOCAL = req.body.CODLOCAL;
+    const ESTANTE = req.body.ESTANTE;
+    const PRATELEIRA = req.body.PRATELEIRA;
+    const SITFICHA = req.body.SITFICHA;
+    const CODUSUEMP = req.body.CODUSUEMP;
+    const RG = req.body.RG;
+    const ORGAOEXP = req.body.ORGAOEXP;
+     const UF = req.body.UF;
+    execSQLQuery(`INSERT INTO ficha (MATRICULA,
+                  NOMESERVIDOR,
+                  NOMEMAE,
+                   DTNASC,
+                   CPF,
+                   CODLOCAL,
+                   ESTANTE,
+                   PRATELEIRA,
+                   SITFICHA,
+                   CODUSUEMP,
+                   RG,
+                   ORGAOEXP,
+                   UF)
+                    VALUES
+                   ('${MATRICULA}',
+                    '${NOMESERVIDOR}',
+                    '${NOMEMAE}',
+                    '${DTNASC}',
+                    '${CPF}',
+                    '${CODLOCAL}',
+                    '${ESTANTE}',
+                    '${PRATELEIRA}',
+                    '${SITFICHA}',
+                    '${CODUSUEMP}',
+                    '${RG}',
+                    '${ORGAOEXP}',
+                    '${UF}')`,
+                   res);
+})
+
+ // alterar estante 
+router.patch('/alterar/estante/:id', (req, res) =>{
+    const NUMFICHA = parseInt(req.params.id);
+    const MATRICULA = req.body.MATRICULA.substring(0,12);
+    const NOMESERVIDOR = req.body.NOMESERVIDOR.substring(0,60);
+    const NOMEMAE = req.body.NOMEMAE.substring(0,60);
+    const DTNASC = req.body.DTNASC.substring(0,10);
+    const CPF = req.body.CPF.substring(0,11);
+    const CODLOCAL = req.body.CODLOCAL.substring(0,3);
+    const ESTANTE = req.body.ESTANTE.substring(0,1);
+    const PRATELEIRA = req.body.PRATELEIRA.substring(0,1);
+    const SITFICHA = req.body.SITFICHA.substring(0,1);
+    const CODUSUEMP = req.body.CODUSUEMP.substring(0,10);
+    const RG = req.body.RG.substring(0,15);
+    const ORGAOEXP = req.body.ORGAOEXP.substring(0,3);
+     const UF = req.body.UF.substring(0,2);
+    execSQLQuery(`UPDATE ficha SET MATRICULA='${MATRICULA}',
+                  NOMESERVIDOR='${NOMESERVIDOR}',
+                  NOMEMAE='${NOMEMAE}',
+                   DTNASC='${DTNASC}',
+                   CPF='${CPF}',
+                   CODLOCAL='${CODLOCAL}',
+                   ESTANTE='${ESTANTE}',
+                   PRATELEIRA='${PRATELEIRA}',
+                   SITFICHA='${SITFICHA}',
+                   CODUSUEMP='${CODUSUEMP}',
+                   RG='${RG}',
+                   ORGAOEXP='${ORGAOEXP}',
+                   UF='${UF}' 
+                   WHERE NUMFICHA='${NUMFICHA}'`,                  
+                   res);
+})
+
+//deletar estante
+router.delete('/delete/estante/:id', (req, res) =>{
+    execSQLQuery('DELETE FROM ficha WHERE NUMFICHA=' + parseInt(req.params.id), res);
+}) 
+
+
 //inicia o servidor
 app.listen(port);
 console.log('API funcionando!');
