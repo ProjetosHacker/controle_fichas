@@ -168,41 +168,19 @@ router.get('/estantes/:id?', (req, res) =>{
 })
 
  // alterar estante 
-router.patch('/alterar/estante/:id', (req, res) =>{
-    const NUMFICHA = parseInt(req.params.id);
-    const MATRICULA = req.body.MATRICULA.substring(0,12);
-    const NOMESERVIDOR = req.body.NOMESERVIDOR.substring(0,60);
-    const NOMEMAE = req.body.NOMEMAE.substring(0,60);
-    const DTNASC = req.body.DTNASC.substring(0,10);
-    const CPF = req.body.CPF.substring(0,11);
-    const CODLOCAL = req.body.CODLOCAL.substring(0,3);
-    const ESTANTE = req.body.ESTANTE.substring(0,1);
-    const PRATELEIRA = req.body.PRATELEIRA.substring(0,1);
-    const SITFICHA = req.body.SITFICHA.substring(0,1);
-    const CODUSUEMP = req.body.CODUSUEMP.substring(0,10);
-    const RG = req.body.RG.substring(0,15);
-    const ORGAOEXP = req.body.ORGAOEXP.substring(0,3);
-     const UF = req.body.UF.substring(0,2);
-    execSQLQuery(`UPDATE ficha SET MATRICULA='${MATRICULA}',
-                  NOMESERVIDOR='${NOMESERVIDOR}',
-                  NOMEMAE='${NOMEMAE}',
-                   DTNASC='${DTNASC}',
-                   CPF='${CPF}',
-                   CODLOCAL='${CODLOCAL}',
-                   ESTANTE='${ESTANTE}',
-                   PRATELEIRA='${PRATELEIRA}',
-                   SITFICHA='${SITFICHA}',
-                   CODUSUEMP='${CODUSUEMP}',
-                   RG='${RG}',
-                   ORGAOEXP='${ORGAOEXP}',
-                   UF='${UF}' 
-                   WHERE NUMFICHA='${NUMFICHA}'`,                  
+router.patch('/alterar/estante/:codlocal', (req, res) =>{
+    const CODLOCAL = parseInt(req.params.codlocal);
+    const NUMESTANTE = req.body.NUMESTANTE;
+    const NUMPRATELEIRA = req.body.NUMPRATELEIRA;
+    execSQLQuery(`UPDATE estante SET NUMESTANTE='${NUMESTANTE}',
+                         NUMPRATELEIRA='${NUMPRATELEIRA}'
+                         WHERE CODLOCAL='${CODLOCAL}'`,                   
                    res);
 })
 
 //deletar estante
 router.delete('/delete/estante/:id', (req, res) =>{
-    execSQLQuery('DELETE FROM ficha WHERE NUMFICHA=' + parseInt(req.params.id), res);
+    execSQLQuery('DELETE FROM estante WHERE CODLOCAL=' + parseInt(req.params.id), res);
 }) 
 
 
