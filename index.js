@@ -155,46 +155,15 @@ router.get('/estantes/:id?', (req, res) =>{
  //inserir estante
  router.post('/inserir/estante', (req, res) =>{
     //const NUMFICHA = parseInt(req.params.id);
-    const MATRICULA = req.body.MATRICULA;
-    const NOMESERVIDOR = req.body.NOMESERVIDOR;
-    const NOMEMAE = req.body.NOMEMAE;
-    const DTNASC = req.body.DTNASC;
-    const CPF = req.body.CPF;
     const CODLOCAL = req.body.CODLOCAL;
-    const ESTANTE = req.body.ESTANTE;
-    const PRATELEIRA = req.body.PRATELEIRA;
-    const SITFICHA = req.body.SITFICHA;
-    const CODUSUEMP = req.body.CODUSUEMP;
-    const RG = req.body.RG;
-    const ORGAOEXP = req.body.ORGAOEXP;
-     const UF = req.body.UF;
-    execSQLQuery(`INSERT INTO ficha (MATRICULA,
-                  NOMESERVIDOR,
-                  NOMEMAE,
-                   DTNASC,
-                   CPF,
-                   CODLOCAL,
-                   ESTANTE,
-                   PRATELEIRA,
-                   SITFICHA,
-                   CODUSUEMP,
-                   RG,
-                   ORGAOEXP,
-                   UF)
+    const NUMESTANTE = req.body.NUMESTANTE;
+    const NUMPRATELEIRA = req.body.NUMPRATELEIRA;
+ 
+    execSQLQuery(`INSERT INTO estante (CODLOCAL,NUMESTANTE,NUMPRATELEIRA)
                     VALUES
-                   ('${MATRICULA}',
-                    '${NOMESERVIDOR}',
-                    '${NOMEMAE}',
-                    '${DTNASC}',
-                    '${CPF}',
-                    '${CODLOCAL}',
-                    '${ESTANTE}',
-                    '${PRATELEIRA}',
-                    '${SITFICHA}',
-                    '${CODUSUEMP}',
-                    '${RG}',
-                    '${ORGAOEXP}',
-                    '${UF}')`,
+                   ('${CODLOCAL}',
+                    '${NUMESTANTE}',
+                    '${NUMPRATELEIRA}')`,
                    res);
 })
 
