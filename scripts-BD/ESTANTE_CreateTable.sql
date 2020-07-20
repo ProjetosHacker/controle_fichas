@@ -2,12 +2,13 @@
 
 -- Drop table
 
--- DROP TABLE ESTANTE;
+-- DROP TABLE sis_ficha.estante;
 
-CREATE TABLE ESTANTE (
-	CODLOCAL INTEGER NOT NULL,
-	NUMESTANTE INTEGER,
-	NUMPRATELEIRA INTEGER,
-	PRIMARY KEY (CODLOCAL)
+CREATE TABLE sis_ficha.estante (
+	codlocal INTEGER NOT NULL UNIQUE,
+	numestante INTEGER,
+	numprateleira INTEGER,
+	PRIMARY KEY (codlocal)
 );
 
+select * from sis_ficha.estante;
