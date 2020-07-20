@@ -42,16 +42,13 @@ app.use('/', router);
  //inserir ficha
  router.post('/inserir/ficha', (req, res) =>{
     //const NUMFICHA = parseInt(req.params.id);
+
     const MATRICULA = req.body.MATRICULA;
     const NOMESERVIDOR = req.body.NOMESERVIDOR;
     const NOMEMAE = req.body.NOMEMAE;
     const DTNASC = req.body.DTNASC;
     const CPF = req.body.CPF;
     const CODLOCAL = req.body.CODLOCAL;
-    const ESTANTE = req.body.ESTANTE;
-    const PRATELEIRA = req.body.PRATELEIRA;
-    const SITFICHA = req.body.SITFICHA;
-    const CODUSUEMP = req.body.CODUSUEMP;
     const RG = req.body.RG;
     const ORGAOEXP = req.body.ORGAOEXP;
      const UF = req.body.UF;
@@ -61,10 +58,6 @@ app.use('/', router);
                    DTNASC,
                    CPF,
                    CODLOCAL,
-                   ESTANTE,
-                   PRATELEIRA,
-                   SITFICHA,
-                   CODUSUEMP,
                    RG,
                    ORGAOEXP,
                    UF)
@@ -75,10 +68,6 @@ app.use('/', router);
                     '${DTNASC}',
                     '${CPF}',
                     '${CODLOCAL}',
-                    '${ESTANTE}',
-                    '${PRATELEIRA}',
-                    '${SITFICHA}',
-                    '${CODUSUEMP}',
                     '${RG}',
                     '${ORGAOEXP}',
                     '${UF}')`,
@@ -94,10 +83,6 @@ router.patch('/alterar/fichas/:id', (req, res) =>{
     const DTNASC = req.body.DTNASC.substring(0,10);
     const CPF = req.body.CPF.substring(0,11);
     const CODLOCAL = req.body.CODLOCAL.substring(0,3);
-    const ESTANTE = req.body.ESTANTE.substring(0,1);
-    const PRATELEIRA = req.body.PRATELEIRA.substring(0,1);
-    const SITFICHA = req.body.SITFICHA.substring(0,1);
-    const CODUSUEMP = req.body.CODUSUEMP.substring(0,10);
     const RG = req.body.RG.substring(0,15);
     const ORGAOEXP = req.body.ORGAOEXP.substring(0,3);
      const UF = req.body.UF.substring(0,2);
@@ -107,10 +92,6 @@ router.patch('/alterar/fichas/:id', (req, res) =>{
                    DTNASC='${DTNASC}',
                    CPF='${CPF}',
                    CODLOCAL='${CODLOCAL}',
-                   ESTANTE='${ESTANTE}',
-                   PRATELEIRA='${PRATELEIRA}',
-                   SITFICHA='${SITFICHA}',
-                   CODUSUEMP='${CODUSUEMP}',
                    RG='${RG}',
                    ORGAOEXP='${ORGAOEXP}',
                    UF='${UF}' 
