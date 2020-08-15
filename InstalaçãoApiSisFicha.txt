@@ -1,0 +1,57 @@
+1 - Instalação do NODE, MYSQL SERVER, MYSQL WORKBENCH e VSCODE ;
+
+  1-1 Na instalação do MYSQL SERVER, vai ser solicitado a criação e configuração de um servidor local, configure usuário,
+senha e porta e deixe anotado para usar mais tarde na API para conexão com o banco de dados;
+
+2- Efetue a instalação do git para o seu sistema operacional, com ele que teremos acesso ao source do projeto .
+ 2-1 no terminal do Vscode, baixe o projeto para sua máquina com o comando : 
+     git clone https://github.com/ProjetosHacker/controle_fichas.git
+
+3 -Criação das tabelas e configuração do banco 
+  2-1 Logue no MYSQL WORKBENCH com as credenciais criadas durante a instalação do MYSQL SERVER.
+  2-2 Crie um schema no banco de dados chamado sis_ficha.
+  2-3 Execute apenas os comandos create de cada Arquivo da pasta script-BD do projeto baixado anteriormente.
+
+4 - Efetue a importação dos dados do sistema antigo para o banco de dados MYSQL, da seguinte forma :
+  4-1 No MYSQL WORKBENCH clique com o botão direito na tabela 'ficha' e escolha a opção 'table data import Wizard'
+  4-2 Escolha o arquivo FICHA_202007141819.csv e clique next até terminar a importação
+  4-3 Apos a importação Execute novamente o scripts FICHA_CreateTable da pasta scripts-BD do projeto baixado no passo 2,
+  dessa vez executando comando por comando, menos o CREATE, tendo maior atenção seguindo com cuidados as 
+  recomendações que estão nos comentários , para que as tabelas sejam criadas corretamente 
+
+ 5 - configuração Das dependencias do NODE e configurações do projeto.
+  5-1 com o NODE já instalado no seu sistema operacional abra o projeto no VSCODE e no terminal do VSCODE 
+digite os comandos abaixo :
+   npm install express 
+   npm install body-parser
+   npm install cors
+   npm install mysql  
+
+6 - Executar a API (Backend)
+   6-1 - na pasta raiz do projeto no terminal do VSCODE digite o comando : 
+   node index.js
+  Se todos os passos de configurações acima foram realizados corretamente será apresentada a mensagem 'API funcionando !'
+  no console do VSCODE, indicando que o Backend da aplicação está funcionando corretamente .
+  6-2 A API está acessivel pelo endereço http://localhost:3000/ , onde retorna apenas as respostas da requisição em JSON.
+  
+Agora será configurado o Front End :
+
+1 - No VSCODE instale a extensão LIVE SERVER para visualização em tempo real de arquivos HTML 
+2 - Clone o projeto do Front End com o comando : 
+  git clone https://github.com/ProjetosHacker/controle_fichas_Front-end.git 
+
+3 - Clique com o botão direito no icone do vscode que está em execução na barra de tarefas e escolha  'New Window',
+pois precisaremos de duas janelas abertas, uma rodando a API do backend, e outra janela do VSCODE para termos acesso
+ao projeto do front end .
+4 - Com a Api funcionando em uma janela do VSCODE, abra o projeto do front end em outra janela do VSCODE, na lista
+de arquivos da IDE localize o arquivo index.html 
+5 - tendo instalado a extensão LIVE SERVER clique com o botão direito no arquivo index.html e escolha a opção open with Live SERVER
+
+Agora com o projeto em execução, só Efetuar as devidas alterações no frontend (HTML, CSS) 
+
+HAPPY CODE !
+
+ 
+
+
+

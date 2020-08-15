@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();         
 const bodyParser = require('body-parser');
-const port = 3000; //porta padrão
+const port = 3002; //porta padrão
 const mysql = require('mysql');
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -14,7 +14,7 @@ function execSQLQuery(sqlQry, res, req){
         host     : 'localhost',
         port     : 3306,
         user     : 'root',
-        password : 'cl123456',
+        password : 'cl172615',
         database : 'sis_ficha'
     });
   
@@ -105,10 +105,10 @@ router.delete('/delete/fichas/:id', (req, res) =>{
 }) 
 
 
-//pesquisa ficha por id ou se vazio retorna todas as fichas .
-router.get('/fichas/:id?', (req, res) =>{
+//pesquisa ficha por letra inicial ou se vazio retorna todas as fichas .
+router.get('/fichas/:letter?', (req, res) =>{
     let filter = '';
-    if(req.params.id) filter = ' WHERE NUMFICHA=' + parseInt(req.params.id);
+    if(req.params.letter) filter = ` WHERE nomeservidor REGEXP '^[${req.params.letter}].*$'`;
     execSQLQuery('SELECT * FROM ficha' + filter, res);
 })
 
