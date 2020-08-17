@@ -42,16 +42,16 @@ app.use('/', router);
  //inserir ficha
  router.post('/inserir/ficha', (req, res) =>{
     //const NUMFICHA = parseInt(req.params.id);
-
-    const MATRICULA = req.body.MATRICULA;
-    const NOMESERVIDOR = req.body.NOMESERVIDOR;
-    const NOMEMAE = req.body.NOMEMAE;
-    const DTNASC = req.body.DTNASC;
-    const CPF = req.body.CPF;
-    const CODLOCAL = req.body.CODLOCAL;
-    const RG = req.body.RG;
-    const ORGAOEXP = req.body.ORGAOEXP;
-     const UF = req.body.UF;
+    console.log(JSON.stringify(req.body) + "log numficha");
+    const MATRICULA = req.body.matricula;
+    const NOMESERVIDOR = req.body.nomeServidor;
+    const NOMEMAE = req.body.nomeMae;
+    const DTNASC = req.body.dtNasc;
+    const CPF = req.body.cpf;
+    const CODLOCAL = req.body.codLocal;
+    const RG = req.body.rg;
+    const ORGAOEXP = req.body.orgaoExp;
+     const UF = req.body.uf;
     execSQLQuery(`INSERT INTO ficha (MATRICULA,
                   NOMESERVIDOR,
                   NOMEMAE,
@@ -77,15 +77,15 @@ app.use('/', router);
  // alterar ficha 
 router.patch('/alterar/fichas/:id', (req, res) =>{
     const NUMFICHA = parseInt(req.params.id);
-    const MATRICULA = req.body.MATRICULA.substring(0,12);
-    const NOMESERVIDOR = req.body.NOMESERVIDOR.substring(0,60);
-    const NOMEMAE = req.body.NOMEMAE.substring(0,60);
-    const DTNASC = req.body.DTNASC.substring(0,10);
-    const CPF = req.body.CPF.substring(0,11);
-    const CODLOCAL = req.body.CODLOCAL.substring(0,3);
-    const RG = req.body.RG.substring(0,15);
-    const ORGAOEXP = req.body.ORGAOEXP.substring(0,3);
-     const UF = req.body.UF.substring(0,2);
+    const MATRICULA = req.body.matricula.substring(0,12);
+    const NOMESERVIDOR = req.body.nomeServidor.substring(0,60);
+    const NOMEMAE = req.body.nomeMae.substring(0,60);
+    const DTNASC = req.body.dtNasc.substring(0,10);
+    const CPF = req.body.cpf.substring(0,11);
+    const CODLOCAL = req.body.codLocal.substring(0,3);
+    const RG = req.body.rg.substring(0,15);
+    const ORGAOEXP = req.body.orgaoExp.substring(0,3);
+     const UF = req.body.uf.substring(0,2);
     execSQLQuery(`UPDATE ficha SET MATRICULA='${MATRICULA}',
                   NOMESERVIDOR='${NOMESERVIDOR}',
                   NOMEMAE='${NOMEMAE}',
