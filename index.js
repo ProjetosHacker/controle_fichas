@@ -20,7 +20,7 @@ function execSQLQuery(sqlQry, res, req){
   
     connection.query(sqlQry, function(error, results, fields){
         if (error) {
-          res.json(error);
+            res.status(400).json(error);
           console.log(error,"ERROR");
         } else {
             console.log(res,"RESOLVE");
