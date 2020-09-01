@@ -14,11 +14,8 @@ function execSQLQuery(sqlQry, res, req){
         host     : 'localhost',
         port     : 3306,
         user     : 'root',
-<<<<<<< HEAD
         password : '',
-=======
         password : 'cl123456',
->>>>>>> d51f22fd3a1133595b25f0eb1ee53da0e7684a74
         database : 'sis_ficha'
     });
   
