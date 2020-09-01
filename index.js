@@ -14,7 +14,7 @@ function execSQLQuery(sqlQry, res, req){
         host     : 'localhost',
         port     : 3306,
         user     : 'root',
-        password : 'cl172615',
+        password : '',
         database : 'sis_ficha'
     });
   
@@ -109,6 +109,14 @@ router.delete('/delete/fichas/:id', (req, res) =>{
 router.get('/fichas/:letter?', (req, res) =>{
     let filter = '';
     if(req.params.letter) filter = ` WHERE nomeservidor REGEXP '^[${req.params.letter}].*$'`;
+    execSQLQuery('SELECT * FROM ficha' + filter, res);
+})
+
+//pesquisa ficha por termo passado .
+router.get('/search/fichas/:query', (req, res) =>{
+    let filter = '';
+    if(req.params.query) filter = ` WHERE nomeservidor REGEXP '${req.params.query}'`;
+    console.log(`SELECT * FROM ficha WHERE nomeservidor REGEXP '${req.params.query}' `)
     execSQLQuery('SELECT * FROM ficha' + filter, res);
 })
 
