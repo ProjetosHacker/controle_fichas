@@ -113,9 +113,9 @@ router.get('/fichas/:letter?', (req, res) =>{
 })
 
 //pesquisa ficha por termo passado .
-router.get('/search/fichas/:query', (req, res) =>{
+router.get('/search/fichas/:field/:query', (req, res) =>{
     let filter = '';
-    if(req.params.query) filter = ` WHERE nomeservidor REGEXP '${req.params.query}'`;
+    if(req.params.field && req.params.query) filter = ` WHERE ${req.params.field} REGEXP '${req.params.query}'`;
     console.log(`SELECT * FROM ficha WHERE nomeservidor REGEXP '${req.params.query}' `)
     execSQLQuery('SELECT * FROM ficha' + filter, res);
 })
