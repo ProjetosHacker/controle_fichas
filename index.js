@@ -103,20 +103,17 @@ router.patch('/alterar/fichas/:id', (req, res) =>{
 router.delete('/delete/fichas/:id', (req, res) =>{
     execSQLQuery('DELETE FROM ficha WHERE NUMFICHA=' + parseInt(req.params.id), res);
 }) 
-
+//pesquisa ficha por termo passado .
+router.get('/search/fichas/:field/:query', (req, res) =>{
+    let filter = '';
+    if(req.params.field) filter = ` WHERE ${req.params.field} REGEXP '${req.params.query}'`;
+    execSQLQuery('SELECT * FROM ficha' + filter, res);
+})
 
 //pesquisa ficha por letra inicial ou se vazio retorna todas as fichas .
 router.get('/fichas/:letter?', (req, res) =>{
     let filter = '';
     if(req.params.letter) filter = ` WHERE nomeservidor REGEXP '^[${req.params.letter}].*$'`;
-    execSQLQuery('SELECT * FROM ficha' + filter, res);
-})
-
-//pesquisa ficha por termo passado .
-router.get('/search/fichas/:field/:query', (req, res) =>{
-    let filter = '';
-    if(req.params.field && req.params.query) filter = ` WHERE ${req.params.field} REGEXP '${req.params.query}'`;
-    console.log(`SELECT * FROM ficha WHERE nomeservidor REGEXP '${req.params.query}' `)
     execSQLQuery('SELECT * FROM ficha' + filter, res);
 })
 
